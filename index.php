@@ -29,8 +29,8 @@ session_start();
 if (isset($_SESSION['messege'])) {
     echo $_SESSION['messege'];
     session_unset();
-    session_destroy();
 }
+$_SESSION['confirm_visit'] = 0;
 
 ?>
 

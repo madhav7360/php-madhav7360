@@ -18,9 +18,8 @@ if (isset($_POST['submit'])) {
     } else {
 
         $_SESSION['email'] = $mailId;
-
         $_SESSION['case'] = 'subscribe';
-        $_SESSION['confirm_visit'] = 0;
+        $_SESSION['confirm_visit'] = 1;
 
         $check = "select * from list where mailId='$mailId'";
         $resultcheck = mysqli_query($con, $check);

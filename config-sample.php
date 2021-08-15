@@ -14,4 +14,5 @@ return array(
     'user' => 'username',
     'db' => 'database',
     'pass' => '**********',
+    'API_KEY' => '*******',
 );
