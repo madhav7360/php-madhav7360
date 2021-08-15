@@ -15,7 +15,7 @@
                 </div>
             
                 <div>
-                    <button class="btn" name="submit" type="submit"> Register </button>
+                    <button class="btn" name="submit" type="submit"> Unsubscribe </button>
                 </div>
 
             </div>
@@ -31,7 +31,8 @@ if (isset($_SESSION['messege'])) {
     session_unset();
 }
 $_SESSION['confirm_visit'] = 0;
-$_SESSION['case'] = 'subscribe';
+$_SESSION['case'] = 'unsubscribe';
+
 ?>
 
 

@@ -18,22 +18,12 @@ if (isset($_POST['submit'])) {
     } else {
 
         $_SESSION['email'] = $mailId;
-        $_SESSION['case'] = 'subscribe';
+       
         $_SESSION['confirm_visit'] = 1;
 
-        $check = "select * from list where mailId='$mailId'";
-        $resultcheck = mysqli_query($con, $check);
-
-        $row = mysqli_num_rows($resultcheck);
-        if ($row == 1) {
-            $_SESSION['messege'] = 'Already Subscribed';
-            header("Location: index.php");
-
-        } else {
-
-            header("Location: otp.php");
+        header("Location: otp.php");
             
-        }
+        
     }
 }
 ?>

@@ -7,7 +7,7 @@ if ($_SESSION['confirm_visit'] != 2) {
     header("Location: index.php");
     exit;
 }
-$_SESSION['confirm_visit'] = 3;
+
 
 ?>
 <html lang="en">
@@ -65,8 +65,23 @@ if (isset($_POST['submit'])) {
     $emailId = $_SESSION['email'];
     if ($otp == $_SESSION['otp']) {
 
+
+        $check = "select * from list where mailId='$emailId'";
+        $resultcheck = mysqli_query($con, $check);
+
+        $row = mysqli_num_rows($resultcheck);
+        
+
+
+
         if ($_SESSION['case'] == 'unsubscribe') {
             echo "unsubscribe" . "<br>";
+            if ($row == 0) {
+                $_SESSION['messege'] = 'No active subscription on this email id';
+                $_SESSION['process'] = 3;
+                header("Location: index.php");
+            }
+            else {
             $query = "delete from list where mailId = '$emailId'";
             $result = mysqli_query($con, $query);
             if ($result == 1) {
@@ -75,18 +90,25 @@ if (isset($_POST['submit'])) {
                 header("Location: index.php");
 
             }
-
+        }
         } else if ($_SESSION['case'] = 'subscribe') {
             echo "subscribe" . "<br>";
+            if ($row == 1) {
+                $_SESSION['messege'] = 'Already Subscribed';
+                $_SESSION['process'] = 3;
+                header("Location: index.php");
+            }
+            else {
             $query = "insert into list (mailId) values ('$emailId')";
             $result = mysqli_query($con, $query);
             if ($result == 1) {
                 $_SESSION['messege'] = 'Subscribed Sucessfully. A XKCD comic will be sent to you every 5 min';
+
                 $_SESSION['process'] = 3;
                 header("Location: index.php");
 
             }
-
+        }
         }
 
     }
