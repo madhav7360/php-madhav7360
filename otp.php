@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo $_SESSION['confirm_visit'];
+
 if ($_SESSION['confirm_visit'] != 1 ) {
 
     echo "requested page has expired, you will be redirected to home page";
@@ -14,9 +14,9 @@ $email = $_SESSION['email'];
 $_SESSION['otp'] = $rndno;
 //                                                                   MAILING PROCESS
 $config = include 'config.php';
-$body = "Your OTP is " . $rndno;
+$body = "Your Verification code is " . $rndno;
 $name = "OTP";
-$subject = "Email Confirmation";
+$subject = "Email Verification";
 
 $headers = array(
     'Authorization: Bearer ' . $config['API_KEY'],

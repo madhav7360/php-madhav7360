@@ -13,35 +13,66 @@ if ($_SESSION['confirm_visit'] != 2) {
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./assets/style.css" title="Default">
+<title>xkcd Comics Subscription</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="shortcut icon" href="https://xkcd.com/s/919f27.ico" type="image/x-icon">
+<link rel="icon" href="https://xkcd.com/s/919f27.ico" type="image/x-icon">
 
     <title>Comics Subscription</title>
 </head>
 
 <body>
+<div id="topContainer" class="box">
+
+<div id="ctitle"><img style="width: -webkit-fill-available;" src="./assets/cover.png" alt="cover photo"></div>
+<div id="transcript" style="display: none"></div>
+</div>
+<div id="middleContainer">
+<div id="middleLeft">
+ <div id="masthead">
+<span><a href="https://xkcd.com/"><img src="./assets/0b7742.png" alt="xkcd.com logo" height="83" width="185"></a></span>
+</div>
+<div id="news">
+<div id="xkcdBanner"><a href="https://blacklivesmatter.com/"><img src="./assets/blm.png" style="
+    height: 110px;
+"></a></div>
+
+</div>
+</div>
+<div id="middleRight">
+<div id="masthead" style="
+    padding: 15px;
+">
+
+<span id="slogan">A webcomic of romance,<br> sarcasm, math, and language.</span>
+</div>
+<div id="form">
+<ul class="comicNav">
 
     <!-- ***** Form Start ***** -->
 
 
-       <div class="container">
+      
            <form action="" method="POST">
-                                <div class="user-box">
-                                    <input type="text" name="otp" id="otp" required=" ">
-                                    <label for="otp "> OTP: </label>
-                                </div>
+                                <li><label for="otp "> OTP: </label></li>
+                                <li><input type="text" name="otp" id="otp" required=" "></li>
+                                  <li><button class="main-button" name="submit" type="submit"> Submit OTP</button></li>  
+                                    
+                               
 
 
-                                <div>
-                                    <button class="main-button" name="submit" type="submit"> Submit </button>
-                                </div>
-
+                               
 
             </form>
-            </div>
+            </ul>
+
+</div>
+</div>
+<div id="bgLeft" class="bg box"></div>
+<div id="bgRight" class="bg box"></div>
+</div>
        
     <!-- ***** Form End ***** -->
 
