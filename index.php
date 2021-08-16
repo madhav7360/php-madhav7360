@@ -18,7 +18,7 @@
 <div id="middleContainer">
 <div id="middleLeft">
  <div id="masthead">
-<span><a href="https://xkcd.com/"><img src="./assets/0b7742.png" alt="xkcd.com logo" height="83" width="185"></a></span>
+<span><a href="https://xkcd.com/"><img src="./assets/logo.png" alt="xkcd.com logo" height="83" width="185"></a></span>
 </div>
 <div id="news">
 <div id="xkcdBanner"><a href="https://blacklivesmatter.com/"><img src="./assets/blm.png" style="
@@ -39,7 +39,7 @@
 
 <form action="verify.php" method="POST">
 <li> <input type="email" name="mail" id="mail"  required></li>
-<li> <button name="submit" type="submit" > Register </button></li>
+<li> <button name="submit" type="submit" > Subscribe </button></li>
 </form>
 <li>
 
@@ -64,7 +64,8 @@
 
 
 <div id="bottom" class="box">
-   <?php $comic_no = rand(0, 614);
+   <?php 
+   $comic_no = rand(0, 614);
 
 $url = "https://xkcd.com/" . $comic_no . "/info.0.json";
 $ch = curl_init();

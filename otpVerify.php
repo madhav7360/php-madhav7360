@@ -32,7 +32,7 @@ if ($_SESSION['confirm_visit'] != 2) {
 <div id="middleContainer">
 <div id="middleLeft">
  <div id="masthead">
-<span><a href="https://xkcd.com/"><img src="./assets/0b7742.png" alt="xkcd.com logo" height="83" width="185"></a></span>
+<span><a href="https://xkcd.com/"><img src="./assets/logo.png" alt="xkcd.com logo" height="83" width="185"></a></span>
 </div>
 <div id="news">
 <div id="xkcdBanner"><a href="https://blacklivesmatter.com/"><img src="./assets/blm.png" style="
@@ -87,7 +87,7 @@ $config = include 'config.php';
 $con = mysqli_connect($config['host'], $config['user'], $config['pass'], $config['db']);
 
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && isset($_POST['otp'])) {
     
     $otp = $_POST['otp'];
    
@@ -122,7 +122,7 @@ if (isset($_POST['submit'])) {
 
             }
         }
-        } else if ($_SESSION['case'] = 'subscribe') {
+        } else if ($_SESSION['case'] == 'subscribe') {
             echo "subscribe" . "<br>";
             if ($row == 1) {
                 $_SESSION['messege'] = 'Already Subscribed';

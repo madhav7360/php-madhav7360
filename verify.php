@@ -10,7 +10,7 @@ $con = mysqli_connect($config['host'], $config['user'], $config['pass'], $config
 $query = "select * from list";
 $resultcheck = mysqli_query($con, $query);
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit']) && isset($_POST['mail'])) {
 
     $mailId = $_POST['mail'];
     if (!filter_var($mailId, FILTER_VALIDATE_EMAIL)) {
