@@ -5,7 +5,7 @@
     <img src="assets/logo.png" alt="Logo">
   </a>
 
-  <h3 align="center">Comics subscription</h3>
+  <h3 align="center">XKCD comic subscription</h3>
 
   <p align="center">
     Subscription service for XKCD digital comics
@@ -13,7 +13,7 @@
     <a href="https://github.com/madhav7360/5min"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/madhav7360/5min">View Demo</a>
+    <a href="http://xkcd-subscription.gvidhyahostel.com/">View Demo</a>
     ·
     <a href="https://github.com/madhav7360/5min/issues">Report Bug</a>
     ·
@@ -24,61 +24,46 @@
 
 
 <!-- TABLE OF CONTENTS -->
+<p align="center"><a href="https://github.com/madhav7360/5min">
+    <img src="assets/cover.png" alt="banner">
+  </a> </p> <br />
+  
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#built-with">Built With</a></li>  
+    <li><a href="#contact">Contact</a></li>    
   </ol>
-</details>
+</details><br />
 
 
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<a href="https://github.com/madhav7360/5min">
-    <img src="assets/screenshot.png" alt="Logo">
-  </a>
+<p>This project is a PHP based assignment from Rtcamp. It is a comic subscription service that sends a random XKCD comic https://xkcd.com on registered email Id of all the subscribers in every 5 minutes.</p><br />
+<p>To subscribe you have to visit the <a href="http://xkcd-subscription.gvidhyahostel.com/">Site</a> and enter your email address. To verify the email address, a randomly generated 6 digit OTP is then sent on user's email Id that has to be entered in the prompted verification form. Once the email Id is verified, database is checked to make sure that this email address is not alreadyy present in active subscription list, if it is not the user is added to subscription list and will start getting mails at 5 minute interval.</p>  <br />
+<img src="assets/subscribe.png" alt="subscribe-page">  <br /> 
+<p>To unsubscribe from the service an unsubscription link is shared in every mail, which allows users to verify their email id and then unsubscribe from the service.</p>  <br />
+<img src="assets/unsubscribe.png" alt="unsubscribe-page"><br /> 
 
-This project is a PHP based assignment from Rtcamp. I have created a comic subscription service that sends a random XKCD comic https://xkcd.com to all the subscribers in every 5 minutes. 
 
 
-
-### Built With
+## Built With
 
 * [HTML 5](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * [CSS 3](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [PHP](https://www.php.net/)
 * [Curl](https://www.php.net/manual/en/ref.curl.php)
-* [SENDGRID](https://sendgrid.com/)
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-
-
-
-<!-- LICENSE -->
-## License
-
-
+* [SENDGRID](https://sendgrid.com/)<br />
 
 
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [madhavmanocha](https://www.linkedin.com/in/madhavmanocha/) - madhavmanocha7@gmail.com
+Your Name - [@madhavmanocha](https://www.linkedin.com/in/madhavmanocha/) - madhavmanocha7@gmail.com
 
 Project Link: [https://github.com/madhav7360/5min](https://github.com/madhav7360/5min)
 

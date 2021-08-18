@@ -109,7 +109,8 @@ if (isset($_POST['submit'])) {
     </div>
 
     <div id="bottom" class="box">
-      <?php $comic_no = rand(0, 614);
+      <?php 
+      $comic_no = rand(0, 614);
 
 $url = "https://xkcd.com/" . $comic_no . "/info.0.json";
 $ch = curl_init();
@@ -124,7 +125,8 @@ echo '<div id="ctitle"><img
         alt="cover photo"
       />
     </div>
-    '; ?>
+    '; 
+    ?>
     
 
     <!-- Layout by Ian Clasbey, davean, and chromakode -->
