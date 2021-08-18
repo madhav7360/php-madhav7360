@@ -25,43 +25,81 @@
 
     <?php
 session_start();
-$config = include __DIR__.'./config.php';
+$config = include __DIR__ . './config.php';
 
 $con = mysqli_connect($config['host'], $config['user'], $config['pass'], $config['db']);
 
+if (isset($_POST['submit']) && isset($_POST['otp']))
+{
 
-if (isset($_POST['submit']) && isset($_POST['otp'])) {
-    
     $otp = $_POST['otp'];
-   
-  
 
     $emailId = $_SESSION['email'];
-    if ($otp == $_SESSION['otp']) {
-
+    if ($otp == $_SESSION['otp'])
+    {
 
         $check = "select * from list where mailId='$emailId'";
         $resultcheck = mysqli_query($con, $check);
 
         $row = mysqli_num_rows($resultcheck);
-        
 
-
-
-        if ($_SESSION['case'] == 'unsubscribe') {
-            echo "unsubscribe" . "<br>"; if ($row == 0) { $_SESSION['messege'] =
-    'No active subscription on this email id'; header("Location:
-    index.php");exit; } else { $query = "delete from list where mailId =
-    '$emailId'"; $result = mysqli_query($con, $query); if ($result == 1) {
-    $_SESSION['messege'] = 'Unsubscribed Sucessfully.'; header("Location:
-    index.php");exit; } } } else if ($_SESSION['case'] = 'subscribe') { echo
-    "subscribe" . "<br />"; if ($row == 1) { $_SESSION['messege'] = 'Already
-    Subscribed'; header("Location: index.php");exit; } else { $query = "insert
-    into list (mailId) values ('$emailId')"; $result = mysqli_query($con,
-    $query); if ($result == 1) { $_SESSION['messege'] = 'Subscribed Sucessfully.
-    A XKCD comic will be sent to you every 5 min'; header("Location:
-    index.php");exit; } } } } else { $_SESSION['messege']='Invalid OTP';
-    header("Location: index.php");exit; } } ?>
+        if ($_SESSION['case'] == 'unsubscribe')
+        {
+            echo "unsubscribe" . "<br>";
+            if ($row == 0)
+            {
+                $_SESSION['messege'] = 'No active subscription on this email id';
+                header("Location:
+    index.php");
+                exit;
+            }
+            else
+            {
+                $query = "delete from list where mailId =
+    '$emailId'";
+                $result = mysqli_query($con, $query);
+                if ($result == 1)
+                {
+                    $_SESSION['messege'] = 'Unsubscribed Sucessfully.';
+                    header("Location:
+    index.php");
+                    exit;
+                }
+            }
+        }
+        else if ($_SESSION['case'] == 'subscribe')
+        {
+            echo "subscribe" . "<br />";
+            if ($row == 1)
+            {
+                $_SESSION['messege'] = 'Already
+    Subscribed';
+                header("Location: index.php");
+                exit;
+            }
+            else
+            {
+                $query = "insert
+    into list (mailId) values ('$emailId')";
+                $result = mysqli_query($con, $query);
+                if ($result == 1)
+                {
+                    $_SESSION['messege'] = 'Subscribed Sucessfully.
+    A XKCD comic will be sent to you every 5 min';
+                    header("Location:
+    index.php");
+                    exit;
+                }
+            }
+        }
+    }
+    else
+    {
+        $_SESSION['messege'] = 'Invalid OTP';
+        header("Location: index.php");
+        exit;
+    }
+} ?>
 
     <!-- ***** PHP Ends ***** -->
 
@@ -108,7 +146,7 @@ if (isset($_POST['submit']) && isset($_POST['otp'])) {
 
             <form action="" method="POST">
               <div><label for="mail">Verification code : </label></div>
-              <li><label for="otp "> OTP: </label></li>
+              
               <li>
                 <input
                   type="text"
