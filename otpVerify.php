@@ -13,10 +13,10 @@ if ($_SESSION['confirm_visit'] != 2) {
 <html lang="en">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link rel="stylesheet" type="text/css" href="./assets/style.css" title="Default">
 <title>xkcd Comics Subscription</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <link rel="shortcut icon" href="https://xkcd.com/s/919f27.ico" type="image/x-icon">
 <link rel="icon" href="https://xkcd.com/s/919f27.ico" type="image/x-icon">
 
@@ -56,8 +56,9 @@ if ($_SESSION['confirm_visit'] != 2) {
 
       
            <form action="" method="POST">
+           <div><label for="mail">Verification code : </label></div>
                                 <li><label for="otp "> OTP: </label></li>
-                                <li><input type="text" name="otp" id="otp" required=" "></li>
+                                <li><input type="text" name="otp" id="otp" placeholder="######" required=" "></li>
                                   <li><button class="main-button" name="submit" type="submit"> Submit OTP</button></li>  
                                     
                                
@@ -82,12 +83,12 @@ if ($_SESSION['confirm_visit'] != 2) {
 
 <?php
 
-$config = include 'config.php';
+$config = include __DIR__.'./config.php';
 
 $con = mysqli_connect($config['host'], $config['user'], $config['pass'], $config['db']);
 
 
-if (isset($_POST['submit']) && isset($_POST['otp'])) {
+if (isset($_POST['submit'])) {
     
     $otp = $_POST['otp'];
    
@@ -122,7 +123,7 @@ if (isset($_POST['submit']) && isset($_POST['otp'])) {
 
             }
         }
-        } else if ($_SESSION['case'] == 'subscribe') {
+        } else if ($_SESSION['case'] = 'subscribe') {
             echo "subscribe" . "<br>";
             if ($row == 1) {
                 $_SESSION['messege'] = 'Already Subscribed';

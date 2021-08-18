@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link rel="stylesheet" type="text/css" href="./assets/style.css" title="Default">
 <title>xkcd Comics Subscription</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <link rel="shortcut icon" href="https://xkcd.com/s/919f27.ico" type="image/x-icon">
 <link rel="icon" href="https://xkcd.com/s/919f27.ico" type="image/x-icon">
 
@@ -38,7 +38,8 @@
 <ul class="comicNav">
 
 <form action="verify.php" method="POST">
-<li> <input type="email" name="mail" id="mail"  required></li>
+<div><label for="mail">Email address : </label></div>
+<li> <input type="email" name="mail" id="mail" placeholder="email@address.com" required></li>
 <li> <button name="submit" type="submit" > Subscribe </button></li>
 </form>
 <li>
@@ -64,8 +65,7 @@
 
 
 <div id="bottom" class="box">
-   <?php 
-   $comic_no = rand(0, 614);
+   <?php $comic_no = rand(0, 614);
 
 $url = "https://xkcd.com/" . $comic_no . "/info.0.json";
 $ch = curl_init();

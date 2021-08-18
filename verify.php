@@ -2,15 +2,7 @@
 <?php
 session_start();
 
-$config = include 'config.php';
-
-
-$con = mysqli_connect($config['host'], $config['user'], $config['pass'], $config['db']);
-
-$query = "select * from list";
-$resultcheck = mysqli_query($con, $query);
-
-if (isset($_POST['submit']) && isset($_POST['mail'])) {
+if (isset($_POST['submit'])) {
 
     $mailId = $_POST['mail'];
     if (!filter_var($mailId, FILTER_VALIDATE_EMAIL)) {
