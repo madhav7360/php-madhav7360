@@ -1,7 +1,8 @@
 <?php
 //
-
-if( $_SERVER['REMOTE_ADDR'] != $_SERVER['SERVER_ADDR']  ){
+if (isset($_SERVER['SERVER_ADDR']) && isset($_SERVER['REMOTE_ADDR']))
+{
+if($_SERVER['REMOTE_ADDR'] != $_SERVER['SERVER_ADDR']  ){
     exit("Access Denied");
 }
 
@@ -27,17 +28,14 @@ else
 
 //                                                                    FETCHING COMIC
     $comic_no = rand(0, 614);
-
     $url = "https://xkcd.com/" . $comic_no . "/info.0.json";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_URL, $url);
     $res = curl_exec($ch);
     $response = json_decode($res);
-
     $url = $response->img;
     $image = './assets/' . $response->num . ".png";
-
     $fimage = fopen($image, 'w+');
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_FILE, $fimage);
@@ -49,17 +47,13 @@ else
 
     $name = "Comic Subscription";
     $subject = "XKCD Comic";
-
     $base64str = base64_encode(file_get_contents($image));
-
     $headers = array(
         'Authorization: Bearer ' . $config['API_KEY'],
         'Content-Type: application/json',
     );
-
     $data = array(
         "personalizations" => array(
-
         ),
         "from" => array(
             "email" => "500070080@stu.upes.ac.in",
@@ -71,7 +65,6 @@ else
                 "value" => "Click<a href='http://xkcd-subscription.gvidhyahostel.com/unsubscribe.php'> here </a> to unsubscribe",
             ),
         ),
-
         "attachments" => array(
             array(
                 "content" => $base64str,
@@ -87,14 +80,12 @@ else
     $resultcheck = mysqli_query($con, $query);
     $rows = mysqli_fetch_all($resultcheck, MYSQLI_ASSOC);
     foreach ($rows as $row) {
-
         $newdata = array(
             "to" => array(
                 array(
                     "email" => $row['mailId'])));
 
         $data["personalizations"][] = $newdata;
-
     }
 
     $ch = curl_init();
@@ -112,3 +103,6 @@ else
 
     echo $response;
 }
+}
+else {
+    exit("Error, Please try later");}

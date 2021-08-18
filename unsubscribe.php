@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<html lang="en">
 
+<head>
 <link rel="stylesheet" type="text/css" href="./assets/style.css" title="Default">
 <title>xkcd Comics Subscription</title>
 
@@ -9,7 +11,26 @@
 
 </head>
 <body>
-    
+<?php
+session_start();
+
+if (isset($_POST['submit'])) {
+
+    $mailId = $_POST['mail'];
+    if (!filter_var($mailId, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['messege']='Invalid email address.';
+    } else {
+
+        $_SESSION['email'] = $mailId;
+       
+        $_SESSION['confirm_visit'] = 1;
+
+        header("Location: otp.php");
+            
+        
+    }
+}
+?>
     <div id="topContainer" class="box">
 
         <div id="ctitle"><img style="width: -webkit-fill-available;" src="./assets/cover.png" alt="cover photo"></div>
@@ -38,14 +59,14 @@
 <ul class="comicNav">
     <div><label for="mail">Email address : </label></div>
 
-<form action="verify.php" method="POST">
+<form action="" method="POST">
 <li> <input type="email" name="mail" id="mail" placeholder="email@address.com"  required></li>
 <li> <button name="submit" type="submit" > Unsubscribe </button></li>
 </form>
 <li>
 
     <?php
-    session_start();
+    
     if (isset($_SESSION['messege'])) {
         echo $_SESSION['messege'];
         session_unset();
