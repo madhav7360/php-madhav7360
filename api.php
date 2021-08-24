@@ -27,9 +27,19 @@ $time = date('h:i:s a');
     {
 
         //                                                                    FETCHING COMIC
-        $comic_no = rand(0, 614);
-        $url = 'https://xkcd.com/' . $comic_no . '/info.0.json';
+
+        //Generating random comic's url
+        $url = "https://c.xkcd.com/random/comic/";
         $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        curl_exec($ch);
+        $url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+        $url = $url.'info.0.json';
+
+        //Fetching comic's details from generated url
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_URL, $url);
         $res = curl_exec($ch);
@@ -37,6 +47,8 @@ $time = date('h:i:s a');
         $url = $response->img;
         $image = './assets/' . $response->num . '.png';
         $fimage = fopen($image, 'w+');
+       
+        //Fetching and stroing image from link provided in details
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_FILE, $fimage);
         curl_exec($ch);

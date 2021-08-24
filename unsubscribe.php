@@ -1,4 +1,6 @@
 <?php
+if(isset($_GET['id'])&&isset($_GET['validation_hash']))
+{
     $config = include __DIR__ . './config.php';
     $con = mysqli_connect($config['host'], $config['user'], $config['pass'], $config['db']);
 session_start();
@@ -33,7 +35,12 @@ if( $_GET['validation_hash'] != $expected )
                 }
             }
     }
-
+}
+else{
+    $_SESSION['message'] = 'Unexpected error occured. Please try later';
+    header('Location: index.php');
+    exit;
+}
 
 
    

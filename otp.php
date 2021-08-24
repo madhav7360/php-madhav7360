@@ -6,10 +6,11 @@ $email = $_SESSION['email'];
 $_SESSION['otp'] = $otp;
 //                                                                   MAILING PROCESS
 $config = include __DIR__ . './config.php';
-$body = 'Your OTP is ' . $otp;
+$body = '<p>We have received a request for subscription of your email address to xkcd comics mailing list.</p><p>Your OTP is ' . $otp.'</p><p>If you do not wish to be subscribed no action is required.</p>';
 $name = 'OTP';
 $subject = 'Email Verification : OTP - ' . $otp;
 
+    
 $headers = array(
     'Authorization: Bearer ' . $config['API_KEY'],
     'Content-Type: application/json',
