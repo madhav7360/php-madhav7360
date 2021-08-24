@@ -1,89 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<link rel="stylesheet" type="text/css" href="./assets/style.css" title="Default">
-<title>xkcd Comics Subscription</title>
-
-<link rel="shortcut icon" href="https://xkcd.com/s/919f27.ico" type="image/x-icon">
-<link rel="icon" href="https://xkcd.com/s/919f27.ico" type="image/x-icon">
-
-
-</head>
-<body>
 <?php
+    $config = include __DIR__ . './config.php';
+    $con = mysqli_connect($config['host'], $config['user'], $config['pass'], $config['db']);
 session_start();
+    $emailId=$_GET['id'];
+    $expected = md5( $_GET['id'] . $config['KEY'] );
 
-if (isset($_POST['submit'])) {
+if( $_GET['validation_hash'] != $expected )
+    throw new Exception("Validation failed.");
 
-    $mailId = $_POST['mail'];
-    if (!filter_var($mailId, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['messege']='Invalid email address.';
-    } else {
-
-        $_SESSION['email'] = $mailId;
-       
-        $_SESSION['confirm_visit'] = 1;
-
-        header("Location: otp.php");
-            
-        
-    }
-}
-?>
-    <div id="topContainer" class="box">
-
-        <div id="ctitle"><img style="width: -webkit-fill-available;" src="./assets/cover.png" alt="cover photo"></div>
-        
-    </div>
-<div id="middleContainer">
-<div id="middleLeft">
- <div id="masthead">
-<span><a href="https://xkcd.com/"><img src="./assets/logo.png" alt="xkcd.com logo" height="83" width="185"></a></span>
-</div>
-<div id="news">
-<div id="xkcdBanner"><a href="https://blacklivesmatter.com/"><img src="./assets/blm.png" style="
-    height: 110px;
-"></a></div>
-
-</div>
-</div>
-<div id="middleRight">
-<div id="masthead" style="
-    padding: 15px;
-">
-
-<span id="slogan">A webcomic of romance,<br> sarcasm, math, and language.</span>
-</div>
-<div id="form">
-<ul class="comicNav">
-    <div><label for="mail">Email address : </label></div>
-
-<form action="" method="POST">
-<li> <input type="email" name="mail" id="mail" placeholder="email@address.com"  required></li>
-<li> <button name="submit" type="submit" > Unsubscribe </button></li>
-</form>
-<li>
-
-    <?php
+    else{
+        $check = "select * from list where mailId='$emailId'";
+        $resultcheck = mysqli_query($con, $check);
+        echo 'test';
+        $row = mysqli_num_rows($resultcheck);
     
-    if (isset($_SESSION['messege'])) {
-        echo $_SESSION['messege'];
-        session_unset();
+       
+            if ($row == 0)
+            {
+                $_SESSION['message'] = 'No active subscription on this email id';
+                header('Location: index.php');
+                exit;
+            }
+            else
+            {
+                $query = "delete from list where mailId ='$emailId'";
+                $result = mysqli_query($con, $query);
+                if ($result == 1)
+                {
+                    $_SESSION['message'] = 'Unsubscribed Sucessfully.';
+                    header('Location: index.php');
+                    exit;
+                }
+            }
     }
-    $_SESSION['confirm_visit'] = 0;
-    $_SESSION['case'] = 'unsubscribe';
-    ?>
 
-</li>
-</ul>
 
-</div>
-</div>
-<div id="bgLeft" class="bg box"></div>
-<div id="bgRight" class="bg box"></div>
-</div>
 
-<!-- Layout by Ian Clasbey, davean, and chromakode -->
+   
+    
 
-</body></html>
