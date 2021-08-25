@@ -73,17 +73,19 @@ $time = date('h:i:s a');
         foreach ($rows as $row)
         {
             
-            if(isset($_SERVER['HTTPS']) && isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTPS'] === 'on')
-           $link = "https";
+            if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+                { $link = "https";}
            else
-           $link = "http";
+               { $link = "http";}
            
            // Here append the common URL characters.
            $link .= "://";
            
            // Append the host(domain name, ip) to the URL.
-           $link .= $_SERVER['HTTP_HOST'];
-           
+           if(isset($_SERVER['HTTP_HOST']))
+                $link .= $_SERVER['HTTP_HOST'];
+           else
+                exit('Error occured, HTTP_HOST not set');
            // Append file path and token
             $link .= "/php-madhav7360/unsubscribe.php?id=".$row['mailId']."&validation_hash=".md5($row['mailId'].$config['KEY']);
 
