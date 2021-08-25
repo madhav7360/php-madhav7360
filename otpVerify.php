@@ -25,7 +25,7 @@
 
     <?php
 session_start();
-$config = include __DIR__ . './config.php';
+$config = include __DIR__ . '/config.php';
 
 $con = mysqli_connect($config['host'], $config['user'], $config['pass'], $config['db']);
 

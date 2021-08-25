@@ -8,7 +8,7 @@ if (isset($_SERVER['SERVER_ADDR']) && isset($_SERVER['REMOTE_ADDR']))
     }
     date_default_timezone_set('Asia/kolkata');
 $time = date('h:i:s a');
-    $config = include __DIR__ . './config.php';
+    $config = include __DIR__ . '/config.php';
 
     $con = mysqli_connect($config['host'], $config['user'], $config['pass'], $config['db']);
 
@@ -63,7 +63,17 @@ $time = date('h:i:s a');
            $serial= $response->num;
            $image_link= $response->img;    
 
-           if(isset($_SERVER['HTTPS']) && isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTPS'] === 'on')
+           
+           
+           
+        //                                                                  Loop
+        $query = 'select * from list';
+        $resultcheck = mysqli_query($con, $query);
+        $rows = mysqli_fetch_all($resultcheck, MYSQLI_ASSOC);
+        foreach ($rows as $row)
+        {
+            
+            if(isset($_SERVER['HTTPS']) && isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTPS'] === 'on')
            $link = "https";
            else
            $link = "http";
@@ -74,15 +84,7 @@ $time = date('h:i:s a');
            // Append the host(domain name, ip) to the URL.
            $link .= $_SERVER['HTTP_HOST'];
            
-           
-        //                                                                  Loop
-        $query = 'select * from list';
-        $resultcheck = mysqli_query($con, $query);
-        $rows = mysqli_fetch_all($resultcheck, MYSQLI_ASSOC);
-        foreach ($rows as $row)
-        {
-            
-            
+           // Append file path and token
             $link .= "/php-madhav7360/unsubscribe.php?id=".$row['mailId']."&validation_hash=".md5($row['mailId'].$config['KEY']);
 
            

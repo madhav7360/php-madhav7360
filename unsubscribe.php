@@ -1,14 +1,18 @@
 <?php
 if(isset($_GET['id'])&&isset($_GET['validation_hash']))
 {
-    $config = include __DIR__ . './config.php';
+    $config = include __DIR__ . '/config.php';
     $con = mysqli_connect($config['host'], $config['user'], $config['pass'], $config['db']);
 session_start();
     $emailId=$_GET['id'];
     $expected = md5( $_GET['id'] . $config['KEY'] );
 
 if( $_GET['validation_hash'] != $expected )
-    throw new Exception("Validation failed.");
+    {
+        $_SESSION['message'] = 'Validation failed';
+        header('Location: index.php');
+        exit;
+    }
 
     else{
         $check = "select * from list where mailId='$emailId'";
