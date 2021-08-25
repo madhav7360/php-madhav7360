@@ -74,12 +74,12 @@ $time = date('h:i:s a');
         {
             
             if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
-                { $link = "https";}
+                { $link = 'https';}
            else
-               { $link = "http";}
+               { $link = 'http';}
            
            // Here append the common URL characters.
-           $link .= "://";
+           $link .= '://';
            
            // Append the host(domain name, ip) to the URL.
            if(isset($_SERVER['HTTP_HOST']))
