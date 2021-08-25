@@ -63,7 +63,7 @@ $time = date('h:i:s a');
            $serial= $response->num;
            $image_link= $response->img;    
 
-           if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+           if(isset($_SERVER['HTTPS']) && isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTPS'] === 'on')
            $link = "https";
            else
            $link = "http";
