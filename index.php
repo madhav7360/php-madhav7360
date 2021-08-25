@@ -111,22 +111,17 @@ if (isset($_POST['submit'])) {
     <div id='bottom' class='box'>
       <?php 
       //Generating random comic's url
-      $url = "https://c.xkcd.com/random/comic/";
-      $ch = curl_init();
-      curl_setopt($ch, CURLOPT_URL, $url);
-      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-      curl_exec($ch);
-      $url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
-      $url = $url.'info.0.json';
+      $url = 'https://c.xkcd.com/random/comic/';
+      $data = ( get_headers($url, 1));
+      $url= $data['Location']['1'].'info.0.json';
 
       //Fetching comic's details from generated url
+      $ch = curl_init();
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
       curl_setopt($ch, CURLOPT_URL, $url);
       $res = curl_exec($ch);
       $response = json_decode($res);
-      curl_close($ch);
+      
 echo "<div id='ctitle'><img
         style='width: -webkit-fill-available'
         src= $response->img 

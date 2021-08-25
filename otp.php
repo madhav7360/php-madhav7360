@@ -27,7 +27,8 @@ $data = array(
         ) ,
     ) ,
     'from' => array(
-        'email' => '500070080@stu.upes.ac.in',
+        'name' => $config['name'],
+        'email' => $config['from'],
     ) ,
     'subject' => $subject,
     'content' => array(

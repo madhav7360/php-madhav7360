@@ -29,17 +29,12 @@ $time = date('h:i:s a');
         //                                                                    FETCHING COMIC
 
         //Generating random comic's url
-        $url = "https://c.xkcd.com/random/comic/";
+        $url = 'https://c.xkcd.com/random/comic/';
+        $data = ( get_headers($url, 1));
+        $url= $data['Location']['1'].'info.0.json';
+
+        //Fetching comic's details from generated url        
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        curl_exec($ch);
-        $url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
-        $url = $url.'info.0.json';
-
-        //Fetching comic's details from generated url
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_URL, $url);
         $res = curl_exec($ch);
@@ -73,7 +68,7 @@ $time = date('h:i:s a');
         $rows = mysqli_fetch_all($resultcheck, MYSQLI_ASSOC);
         foreach ($rows as $row)
         {
-        $link = "http://localhost:8080/php-madhav7360/unsubscribe.php?id=".$row['mailId']."&validation_hash=".md5($row['mailId'].$config['KEY']);
+        $link = "http://".$_SERVER['HTTP_HOST']."/php-madhav7360/unsubscribe.php?id=".$row['mailId']."&validation_hash=".md5($row['mailId'].$config['KEY']);
            
 
         
@@ -88,7 +83,8 @@ $time = date('h:i:s a');
             )
             ) ,
             'from' => array(
-                'email' => '500070080@stu.upes.ac.in',
+                'name' => $config['name'],
+                'email' => $config['from'],
             ) ,
             'subject' => $subject,
             'content' => array(
@@ -98,7 +94,7 @@ $time = date('h:i:s a');
                      <p>Serial number : '.$serial.'</p>
                      <img alt="comic" src='.$image_link.' />
                      <p> Click<a href='.$link.'> here </a> to unsubscribe</p>
-                      ['.$time.'] End of message',
+                      ['.$time.'] End of message<p>'.$_SERVER['HTTP_HOST'].'/php-madhav7360/unsubscribe.php</p>',
                      ) 
                      ) ,
             'attachments' => array(
@@ -127,7 +123,7 @@ $time = date('h:i:s a');
 //DELETING IMAGE
 unlink($image);
 
-//echo $response;
+echo $response;
 }
 }
 else

@@ -6,6 +6,9 @@
 //    'user' => 'root',
 //    'db' => 'xkcd',
 //    'pass' => '',
+//    'KEY' => '123456',
+//    'from' => 'from@email.com',
+//    'name' => 'xkcd comics',
 //);
 
 // Production Database
@@ -15,4 +18,7 @@ return array(
     'db' => 'database',
     'pass' => '**********',
     'API_KEY' => '*******',
+    'KEY' => '123456',
+    'from' => 'from@email.com',
+    'name' => 'xkcd comics',
 );
