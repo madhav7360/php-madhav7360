@@ -132,6 +132,6 @@ echo "<div id='ctitle'><img
     ?>
     
 
-    <!-- Layout by Ian Clasbey, davean, and chromakode -->
+    <p> Layout inpired from <a href= https://xkcd.com > https://xkcd.com/</a> designed by Ian Clasbey, davean, and chromakode </p>
   </body>
 </html>

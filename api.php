@@ -59,16 +59,32 @@ $time = date('h:i:s a');
             'Authorization: Bearer ' . $config['API_KEY'],
             'Content-Type: application/json',
         );
-        $title= $response->safe_title;
+           $title= $response->safe_title;
            $serial= $response->num;
            $image_link= $response->img;    
+
+           if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+           $link = "https";
+           else
+           $link = "http";
+           
+           // Here append the common URL characters.
+           $link .= "://";
+           
+           // Append the host(domain name, ip) to the URL.
+           $link .= $_SERVER['HTTP_HOST'];
+           
+           
         //                                                                  Loop
         $query = 'select * from list';
         $resultcheck = mysqli_query($con, $query);
         $rows = mysqli_fetch_all($resultcheck, MYSQLI_ASSOC);
         foreach ($rows as $row)
         {
-        $link = "http://".$_SERVER['HTTP_HOST']."/php-madhav7360/unsubscribe.php?id=".$row['mailId']."&validation_hash=".md5($row['mailId'].$config['KEY']);
+            
+            
+            $link .= "/php-madhav7360/unsubscribe.php?id=".$row['mailId']."&validation_hash=".md5($row['mailId'].$config['KEY']);
+
            
 
         
@@ -94,7 +110,7 @@ $time = date('h:i:s a');
                      <p>Serial number : '.$serial.'</p>
                      <img alt="comic" src='.$image_link.' />
                      <p> Click<a href='.$link.'> here </a> to unsubscribe</p>
-                      ['.$time.'] End of message<p>'.$_SERVER['HTTP_HOST'].'/php-madhav7360/unsubscribe.php</p>',
+                      ['.$time.'] End of message<p>',
                      ) 
                      ) ,
             'attachments' => array(
